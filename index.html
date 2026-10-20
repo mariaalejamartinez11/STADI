@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STADI - Asistente Virtual</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <header>
+
+    <div class="universidad">
+
+        <img src="logo-umg.png"
+             alt="Escudo Universidad Mariano Gálvez"
+             class="logo-umg">
+
+        <div class="texto-universidad">
+
+            <h2>
+                UNIVERSIDAD MARIANO GÁLVEZ
+                DE GUATEMALA
+            </h2>
+
+            <p>Facultad de Ingeniería</p>
+
+        </div>
+
+    </div>
+
+</header>
+
+    <main>
+
+        <section class="bienvenida">
+
+            <h1> STADI</h1>
+
+            <h2>Asistente Virtual de Estadística Aplicada</h2>
+
+            <p>
+                Bienvenido a tu asistente académico.
+                Aprende, practica y resuelve problemas
+                estadísticos paso a paso.
+            </p>
+
+        </section>
+
+        <section class="contenedor">
+
+            <h2>Selecciona un módulo</h2>
+
+            <div class="modulos">
+
+                <button onclick="abrirModulo('Estadística descriptiva')">
+                    
+                    <h3>Estadística descriptiva</h3>
+                    <p>Media, mediana, moda y desviación estándar.</p>
+                </button>
+
+                <button onclick="abrirModulo('Datos experimentales')">
+                    
+                    <h3>Datos experimentales</h3>
+                    <p>Mediciones físicas y conversiones.</p>
+                </button>
+
+                <button onclick="abrirModulo('Tablas y gráficas')">
+                    
+                    <h3>Tablas y gráficas</h3>
+                    <p>Frecuencias, histogramas y diagramas.</p>
+                </button>
+
+                <button onclick="abrirModulo('Probabilidad')">
+                    
+                    <h3>Probabilidad</h3>
+                    <p>Probabilidades y distribución normal.</p>
+                </button>
+
+                <button onclick="abrirModulo('Relación entre variables')">
+                    
+                    <h3>Relación entre variables</h3>
+                    <p>Correlación y regresión lineal.</p>
+                </button>
+
+                <button onclick="abrirModulo('Prácticas interactivas')">
+                    
+                    <h3>Prácticas interactivas</h3>
+                    <p>Ejercicios y evaluaciones.</p>
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- SECCIÓN DE LOS MÓDULOS -->
+
+<section id="resultado" class="resultado" hidden>
+
+    <h2 id="tituloModulo"></h2>
+
+    <p id="descripcionModulo"></p>
+
+    <!-- ESTADÍSTICA DESCRIPTIVA -->
+
+    <div id="calculadoraDescriptiva"
+         class="calculadora"
+         hidden>
+
+        <h3>📊 Calculadora Estadística</h3>
+
+        <p>
+            Ingresa los datos que deseas analizar.
+            El asistente realizará los cálculos
+            y mostrará el procedimiento paso a paso.
+        </p>
+
+        <label for="datos">
+            <strong>Ingresa tus datos:</strong>
+        </label>
+
+        <textarea
+            id="datos"
+            rows="4"
+            placeholder="Ejemplo: 2.1, 2.3, 2.2, 2.4, 2.0">
+        </textarea>
+
+        <p class="indicacion">
+            Separa los números con comas.
+            Utiliza punto para los decimales.
+        </p>
+
+        <label for="unidad">
+            <strong>Unidad de medida (opcional):</strong>
+        </label>
+
+        <input
+            type="text"
+            id="unidad"
+            placeholder="Ejemplo: A, cm, kg, m"
+            maxlength="30">
+
+        <div class="botones-calculadora">
+
+            <button onclick="calcularEstadistica()">
+                🧮 Calcular resultados
+            </button>
+
+            <button onclick="limpiarDatos()">
+                🗑️ Limpiar
+            </button>
+
+        </div>
+
+        <!-- RESULTADOS -->
+
+        <div id="salidaEstadistica"
+             class="salida-estadistica"
+             aria-live="polite"
+             hidden>
+        </div>
+
+    </div>
+
+    <!-- ===================================
+     MÓDULO 2: DATOS EXPERIMENTALES
+=================================== -->
+
+<div id="calculadoraExperimental"
+     class="calculadora"
+     hidden>
+
+    <h3>🔬 Análisis de Datos Experimentales</h3>
+
+    <p>
+        Ingresa una serie de mediciones físicas.
+        El asistente analizará los datos,
+        realizará conversiones de unidades
+        y explicará los procedimientos.
+    </p>
+
+    <label for="mediciones">
+        <strong>Ingresa las mediciones:</strong>
+    </label>
+
+    <textarea
+        id="mediciones"
+        rows="4"
+        placeholder="Ejemplo: 2.1, 2.3, 2.2, 2.4, 2.0"></textarea>
+
+    <p class="indicacion">
+        Separa los valores con comas.
+        Utiliza punto para los decimales.
+    </p>
+
+    <label for="unidadOrigen">
+        <strong>Unidad de las mediciones:</strong>
+    </label>
+
+    <select id="unidadOrigen">
+
+        <optgroup label="Corriente eléctrica">
+            <option value="A">Amperios (A)</option>
+            <option value="mA">Miliamperios (mA)</option>
+        </optgroup>
+
+        <optgroup label="Voltaje">
+            <option value="V">Voltios (V)</option>
+            <option value="mV">Milivoltios (mV)</option>
+        </optgroup>
+
+        <optgroup label="Longitud">
+            <option value="m">Metros (m)</option>
+            <option value="cm">Centímetros (cm)</option>
+            <option value="mm">Milímetros (mm)</option>
+        </optgroup>
+
+        <optgroup label="Masa">
+            <option value="kg">Kilogramos (kg)</option>
+            <option value="g">Gramos (g)</option>
+        </optgroup>
+
+        <optgroup label="Tiempo">
+            <option value="s">Segundos (s)</option>
+            <option value="ms">Milisegundos (ms)</option>
+        </optgroup>
+
+    </select>
+
+    <label for="unidadDestino">
+        <strong>Convertir las mediciones a:</strong>
+    </label>
+
+    <select id="unidadDestino">
+
+        <optgroup label="Corriente eléctrica">
+            <option value="A">Amperios (A)</option>
+            <option value="mA">Miliamperios (mA)</option>
+        </optgroup>
+
+        <optgroup label="Voltaje">
+            <option value="V">Voltios (V)</option>
+            <option value="mV">Milivoltios (mV)</option>
+        </optgroup>
+
+        <optgroup label="Longitud">
+            <option value="m">Metros (m)</option>
+            <option value="cm">Centímetros (cm)</option>
+            <option value="mm">Milímetros (mm)</option>
+        </optgroup>
+
+        <optgroup label="Masa">
+            <option value="kg">Kilogramos (kg)</option>
+            <option value="g">Gramos (g)</option>
+        </optgroup>
+
+        <optgroup label="Tiempo">
+            <option value="s">Segundos (s)</option>
+            <option value="ms">Milisegundos (ms)</option>
+        </optgroup>
+
+    </select>
+
+    <div class="botones-calculadora">
+
+        <button onclick="calcularExperimento()">
+            🔬 Analizar mediciones
+        </button>
+
+        <button onclick="limpiarExperimento()">
+            🗑️ Limpiar
+        </button>
+
+    </div>
+
+    <div id="salidaExperimental"
+         class="salida-estadistica"
+         aria-live="polite"
+         hidden>
+    </div>
+
+</div>
+
+<!-- ===================================
+     MODULO 3: TABLAS Y GRAFICAS
+=================================== -->
+
+<div id="calculadoraGraficas"
+     class="calculadora"
+     hidden>
+
+    <h3>📈 Tablas y Gráficas Estadísticas</h3>
+
+    <p>
+        Construye tablas de frecuencias,
+        histogramas y diagramas de dispersión
+        utilizando tus propios datos.
+    </p>
+
+    <!-- TABLA DE FRECUENCIAS E HISTOGRAMA -->
+
+    <div class="panel-grafica">
+
+        <h4>📊 Tabla de frecuencias e histograma</h4>
+
+        <p>
+            Ingresa una serie de datos numéricos
+            para generar una tabla de frecuencias
+            y su histograma correspondiente.
+        </p>
+
+        <label for="datosHistograma">
+            <strong>Ingresa los datos:</strong>
+        </label>
+
+        <textarea
+            id="datosHistograma"
+            rows="4"
+            placeholder="Ejemplo: 5, 8, 10, 12, 15, 18">
+        </textarea>
+
+        <p class="indicacion">
+            Separa los números con comas.
+            Utiliza punto para los decimales.
+        </p>
+
+        <div class="botones-calculadora">
+
+            <button onclick="generarHistograma()">
+                📊 Generar tabla e histograma
+            </button>
+
+        </div>
+
+        <div id="resultadoHistograma"
+             class="salida-estadistica"
+             hidden>
+
+            <div id="tablaFrecuencias"></div>
+
+            <canvas
+                id="graficoHistograma"
+                width="900"
+                height="420"
+                role="img"
+                aria-label="Histograma de frecuencias">
+            </canvas>
+
+        </div>
+
+    </div>
+
+    <!-- DIAGRAMA DE DISPERSION -->
+
+    <div class="panel-grafica">
+
+        <h4>📈 Diagrama de dispersión</h4>
+
+        <p>
+            Ingresa dos series de datos para
+            visualizar la relación entre las variables.
+        </p>
+
+        <label for="datosEjeX">
+            <strong>Valores de X:</strong>
+        </label>
+
+        <textarea
+            id="datosEjeX"
+            rows="3"
+            placeholder="Ejemplo: 1, 2, 3, 4, 5">
+        </textarea>
+
+        <label for="datosEjeY">
+            <strong>Valores de Y:</strong>
+        </label>
+
+        <textarea
+            id="datosEjeY"
+            rows="3"
+            placeholder="Ejemplo: 2, 4, 6, 8, 10">
+        </textarea>
+
+        <p class="indicacion">
+            Ambas series deben contener
+            la misma cantidad de datos.
+        </p>
+
+        <div class="botones-calculadora">
+
+            <button onclick="generarDispersion()">
+                📈 Generar diagrama
+            </button>
+
+        </div>
+
+        <div id="resultadoDispersion"
+             class="salida-estadistica"
+             hidden>
+
+            <div id="informacionDispersion"></div>
+
+            <canvas
+                id="graficoDispersion"
+                width="900"
+                height="420"
+                role="img"
+                aria-label="Diagrama de dispersión">
+            </canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==================================
+     MODULO 4: PROBABILIDAD
+================================== -->
+
+<div id="calculadoraProbabilidad"
+     class="calculadora"
+     hidden>
+
+    <h3>🎲 Probabilidad y Distribución Normal</h3>
+
+    <p>
+        Resuelve ejercicios de probabilidad
+        utilizando diferentes herramientas
+        matemáticas.
+    </p>
+
+    <!-- PROBABILIDAD BASICA -->
+
+    <div class="panel-probabilidad">
+
+        <h4>🎲 1. Probabilidad básica</h4>
+
+        <p>
+            Calcula la probabilidad de un evento
+            cuando todos los resultados posibles
+            son igualmente probables.
+        </p>
+
+        <label for="casosFavorables">
+            <strong>Casos favorables:</strong>
+        </label>
+
+        <input type="number"
+               id="casosFavorables"
+               min="0"
+               step="1"
+               placeholder="Ejemplo: 3">
+
+        <label for="casosPosibles">
+            <strong>Casos posibles:</strong>
+        </label>
+
+        <input type="number"
+               id="casosPosibles"
+               min="1"
+               step="1"
+               placeholder="Ejemplo: 6">
+
+        <div class="botones-calculadora">
+
+            <button onclick="mostrarProbBasica()">
+                🎲 Calcular probabilidad
+            </button>
+
+        </div>
+
+        <div id="resultadoProbBasica"
+             class="salida-estadistica"
+             hidden>
+        </div>
+
+    </div>
+
+
+    <!-- DISTRIBUCION NORMAL -->
+
+    <div class="panel-probabilidad">
+
+        <h4>📈 2. Distribución normal</h4>
+
+        <p>
+            Calcula probabilidades utilizando
+            la distribución normal y el valor Z.
+        </p>
+
+        <label for="mediaNormal">
+            <strong>Media (μ):</strong>
+        </label>
+
+        <input type="number"
+               id="mediaNormal"
+               step="any"
+               placeholder="Ejemplo: 100">
+
+        <label for="desviacionNormal">
+            <strong>Desviación estándar (σ):</strong>
+        </label>
+
+        <input type="number"
+               id="desviacionNormal"
+               step="any"
+               min="0"
+               placeholder="Ejemplo: 15">
+
+        <label for="tipoProbNormal">
+            <strong>Tipo de probabilidad:</strong>
+        </label>
+
+        <select id="tipoProbNormal"
+                onchange="actualizarCamposNormal()">
+
+            <option value="menor">
+                P(X ≤ x) - Menor que un valor
+            </option>
+
+            <option value="mayor">
+                P(X ≥ x) - Mayor que un valor
+            </option>
+
+            <option value="entre">
+                P(a ≤ X ≤ b) - Entre dos valores
+            </option>
+
+        </select>
+
+        <label for="valorNormal">
+            <strong>Valor X o límite inferior:</strong>
+        </label>
+
+        <input type="number"
+               id="valorNormal"
+               step="any"
+               placeholder="Ejemplo: 115">
+
+        <div id="campoNormalSegundo" hidden>
+
+            <label for="valorNormalSegundo">
+                <strong>Límite superior:</strong>
+            </label>
+
+            <input type="number"
+                   id="valorNormalSegundo"
+                   step="any"
+                   placeholder="Ejemplo: 130">
+
+        </div>
+
+        <div class="botones-calculadora">
+
+            <button onclick="mostrarProbNormal()">
+                📈 Calcular distribución normal
+            </button>
+
+        </div>
+
+        <div id="resultadoProbNormal"
+             class="salida-estadistica"
+             hidden>
+        </div>
+
+    </div>
+
+
+    <!-- COMBINACIONES Y PERMUTACIONES -->
+
+    <div class="panel-probabilidad">
+
+        <h4>🧮 3. Combinaciones y permutaciones</h4>
+
+        <p>
+            Resuelve ejercicios de conteo
+            cuando importa o no importa
+            el orden de los elementos.
+        </p>
+
+        <label for="tipoConteo">
+            <strong>Selecciona una operación:</strong>
+        </label>
+
+        <select id="tipoConteo">
+
+            <option value="combinacion">
+                Combinaciones
+            </option>
+
+            <option value="permutacion">
+                Permutaciones
+            </option>
+
+        </select>
+
+        <label for="conteoN">
+            <strong>Total de elementos (n):</strong>
+        </label>
+
+        <input type="number"
+               id="conteoN"
+               min="0"
+               max="100"
+               step="1"
+               placeholder="Ejemplo: 5">
+
+        <label for="conteoR">
+            <strong>Elementos seleccionados (r):</strong>
+        </label>
+
+        <input type="number"
+               id="conteoR"
+               min="0"
+               step="1"
+               placeholder="Ejemplo: 2">
+
+        <div class="botones-calculadora">
+
+            <button onclick="mostrarProbConteo()">
+                🧮 Calcular
+            </button>
+
+        </div>
+
+        <div id="resultadoProbConteo"
+             class="salida-estadistica"
+             hidden>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================
+     MODULO 5: CORRELACION Y REGRESION
+=================================== -->
+
+<div id="calculadoraRelacion"
+     class="calculadora"
+     hidden>
+
+    <h3>📉 Correlación y Regresión Lineal</h3>
+
+    <p>
+        Analiza la relación entre dos variables
+        mediante el coeficiente de correlación
+        de Pearson y la regresión lineal simple.
+    </p>
+
+    <label for="relacionX">
+        <strong>Ingresa los valores de X:</strong>
+    </label>
+
+    <textarea
+        id="relacionX"
+        rows="3"
+        placeholder="Ejemplo: 1, 2, 3, 4, 5"></textarea>
+
+    <label for="relacionY">
+        <strong>Ingresa los valores de Y:</strong>
+    </label>
+
+    <textarea
+        id="relacionY"
+        rows="3"
+        placeholder="Ejemplo: 2, 4, 6, 8, 10"></textarea>
+
+    <p class="indicacion">
+        Separa los números con comas.
+        Ambas variables deben tener
+        la misma cantidad de datos.
+    </p>
+
+    <label for="prediccionX">
+        <strong>
+            Valor de X para realizar una predicción
+            (opcional):
+        </strong>
+    </label>
+
+    <input
+        type="number"
+        id="prediccionX"
+        step="any"
+        placeholder="Ejemplo: 6">
+
+    <div class="botones-calculadora">
+
+        <button onclick="calcularRelacion()">
+            📉 Calcular correlación y regresión
+        </button>
+
+        <button onclick="limpiarRelacion()">
+            🗑️ Limpiar
+        </button>
+
+    </div>
+
+    <div id="salidaRelacion"
+         class="salida-estadistica"
+         aria-live="polite"
+         hidden>
+    </div>
+
+</div>
+
+<!-- ===================================
+     MODULO 6: PRACTICAS INTERACTIVAS
+=================================== -->
+
+<div id="calculadoraPracticas"
+     class="calculadora"
+     hidden>
+
+    <h3>🎓 Centro de Prácticas STADI</h3>
+
+    <p>
+        Refuerza tus conocimientos de estadística
+        aplicada mediante ejercicios interactivos.
+        Comprueba tus respuestas y aprende
+        con explicaciones paso a paso.
+    </p>
+
+    <div class="panel-practica">
+
+        <h4>📚 Banco de ejercicios</h4>
+
+        <p>
+            Selecciona cualquiera de los
+            12 ejercicios de ejemplo.
+        </p>
+
+        <div id="listaEjemplos"
+             class="lista-ejemplos">
+        </div>
+
+    </div>
+
+    <div class="panel-practica">
+
+        <h4>🎲 Generador de prácticas</h4>
+
+        <p>
+            Genera ejercicios nuevos con
+            diferentes valores y comprueba
+            tus conocimientos.
+        </p>
+
+        <div class="botones-calculadora">
+
+            <button type="button"
+                    onclick="generarPractica()">
+
+                🎲 Generar nueva práctica
+
+            </button>
+
+        </div>
+
+        <div id="ejercicioActivo" hidden>
+
+            <h4 id="temaPractica"></h4>
+
+            <p id="enunciadoPractica"></p>
+
+            <label for="respuestaPractica">
+                <strong>Ingresa tu respuesta:</strong>
+            </label>
+
+            <input
+                type="text"
+                id="respuestaPractica"
+                inputmode="decimal"
+                placeholder="Escribe tu resultado">
+
+            <p class="indicacion">
+                Escribe solamente el número.
+                No incluyas unidades ni el símbolo %.
+                Redondea a cuatro decimales
+                cuando sea necesario.
+            </p>
+
+            <div class="botones-calculadora">
+
+                <button type="button"
+                        onclick="comprobarPractica()">
+
+                    ✅ Comprobar respuesta
+
+                </button>
+
+                <button type="button"
+                        onclick="mostrarSolucionPractica()">
+
+                    📖 Ver procedimiento
+
+                </button>
+
+            </div>
+
+            <div id="retroalimentacionPractica"
+                 aria-live="polite"
+                 hidden>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <br>
+
+    <button onclick="cerrarModulo()">
+        ⬅️ Volver al inicio
+    </button>
+
+</section>
+
+        <!-- RESULTADOS -->
+
+        <div id="salidaEstadistica"
+             class="salida-estadistica"
+             aria-live="polite"
+             hidden>
+        </div>
+
+    </div>
+
+    <br>
+
+    <button onclick="cerrarModulo()">
+        Volver al inicio
+    </button>
+
+</section>
+
+    </main>
+
+   <!-- INFORMACIÓN ACADÉMICA DEL PROYECTO -->
+
+<footer class="pie-proyecto">
+
+    <h3>🎓 STADI</h3>
+
+    <p>
+        Universidad Mariano Gálvez de Guatemala
+    </p>
+
+    <p>
+        Facultad de Ingeniería
+    </p>
+
+    <p>
+        <strong>Asignatura:</strong> Física II
+    </p>
+
+    <p>
+        <strong>Sección:</strong> 
+    </p>
+
+    <p>
+        <strong>Desarrollado por:</strong>
+    </p>
+
+    <p class="nombre-estudiante">
+        María Alejandra Montepeque Martínez
+    </p>
+
+    <p>
+        Asistente Virtual de Estadística Aplicada
+    </p>
+
+    <p>
+        Proyecto académico 2026
+    </p>
+
+</footer>
+
+ <script src="script.js"></script>
+
+<script src="graficas.js"></script>
+
+<script src="probabilidad.js"></script>
+
+<script src="regresion.js"></script>
+
+<script src="practicas.js"></script>
+
+</body>
+</html>

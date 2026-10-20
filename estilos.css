@@ -1,0 +1,801 @@
+/* CONFIGURACIÓN GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #24364b;
+}
+
+/* ENCABEZADO */
+
+/* ENCABEZADO DE LA UNIVERSIDAD */
+
+header {
+    background-color: #17365d;
+    color: white;
+    padding: 20px;
+}
+
+/* LOGO Y NOMBRE */
+
+.universidad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ESCUDO UNIVERSITARIO */
+
+.logo-umg {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+/* TEXTO UNIVERSITARIO */
+
+.texto-universidad {
+    text-align: left;
+}
+
+.universidad h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.universidad p {
+    font-size: 16px;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 768px) {
+
+    .universidad {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo-umg {
+        width: 75px;
+        height: 75px;
+    }
+
+    .texto-universidad {
+        text-align: center;
+    }
+
+    .universidad h2 {
+        font-size: 19px;
+    }
+
+}
+
+/* BIENVENIDA */
+
+.bienvenida {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #17365d, #2864a0);
+    color: white;
+}
+
+.bienvenida h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.bienvenida h2 {
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+
+.bienvenida p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+/* CONTENEDOR */
+
+.contenedor {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.contenedor h2 {
+    margin-bottom: 30px;
+    color: #17365d;
+}
+
+/* MÓDULOS */
+
+.modulos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.modulos button {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    padding: 35px 20px;
+    cursor: pointer;
+    font-size: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.modulos button:hover {
+    transform: translateY(-7px);
+    background-color: #e8f0fa;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.modulos h3 {
+    font-size: 19px;
+    margin: 15px 0;
+    color: #17365d;
+}
+
+.modulos p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* RESULTADOS */
+
+.resultado {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.resultado h2 {
+    color: #17365d;
+    margin-bottom: 20px;
+}
+
+.resultado p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.resultado button {
+    background-color: #17365d;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+    background-color: #17365d;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+/* DISEÑO PARA CELULAR */
+
+@media (max-width: 768px) {
+
+    .modulos {
+        grid-template-columns: 1fr;
+    }
+
+    .bienvenida h1 {
+        font-size: 36px;
+    }
+
+    .bienvenida h2 {
+        font-size: 22px;
+    }
+
+    .universidad h2 {
+        font-size: 19px;
+    }
+}
+
+/* CENTRAR FACULTAD DE INGENIERIA */
+.texto-universidad p {
+    text-align: center;
+}
+
+/* ===================================
+   CALCULADORA ESTADÍSTICA
+=================================== */
+
+.calculadora {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.calculadora h3 {
+    color: #17365d;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.calculadora p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.calculadora label {
+    display: block;
+    margin: 15px 0 10px;
+    color: #17365d;
+}
+
+/* ENTRADA DE DATOS */
+
+.calculadora textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #d4dce5;
+    border-radius: 10px;
+    font-size: 16px;
+    resize: vertical;
+    font-family: Arial, sans-serif;
+}
+
+.calculadora input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d4dce5;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.calculadora textarea:focus,
+.calculadora input:focus {
+    outline: none;
+    border-color: #2864a0;
+}
+
+.indicacion {
+    color: #666;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* BOTONES */
+
+.botones-calculadora {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.botones-calculadora button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #17365d;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.botones-calculadora button:hover {
+    background-color: #2864a0;
+    transform: translateY(-3px);
+}
+
+/* RESULTADOS ESTADÍSTICOS */
+
+.salida-estadistica {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f8fd;
+    border-radius: 12px;
+    border-left: 5px solid #17365d;
+    overflow-wrap: anywhere;
+}
+
+.salida-estadistica h3 {
+    color: #17365d;
+    font-size: 21px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.salida-estadistica h4 {
+    color: #2864a0;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+.salida-estadistica p {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+/* FÓRMULAS */
+
+.formula {
+    background-color: white;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 1px solid #dce5f0;
+    font-size: 17px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* RESPUESTAS FINALES */
+
+.respuesta-final {
+    background-color: #e2f3e8;
+    color: #176b38;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* ERRORES */
+
+.mensaje-error {
+    color: #a61d24;
+    background-color: #ffe8e8;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* AJUSTES DE PANTALLA */
+
+.resultado {
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+
+    .calculadora {
+        padding: 12px;
+    }
+
+    .botones-calculadora {
+        flex-direction: column;
+    }
+
+    .botones-calculadora button {
+        width: 100%;
+    }
+
+    .formula {
+        font-size: 15px;
+    }
+
+}
+/* ===================================
+   MÓDULO DE DATOS EXPERIMENTALES
+=================================== */
+
+.calculadora select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #d4dce5;
+    border-radius: 10px;
+    background-color: white;
+    color: #24364b;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.calculadora select:focus {
+    outline: none;
+    border-color: #2864a0;
+}
+
+#calculadoraExperimental {
+    margin-top: 20px;
+}
+
+#salidaExperimental {
+    margin-top: 30px;
+}
+
+/* OCULTAR ELEMENTOS INACTIVOS */
+
+[hidden] {
+    display: none !important;
+}
+
+/* ===================================
+   MODULO 3: TABLAS Y GRAFICAS
+=================================== */
+
+.panel-grafica {
+    background-color: #ffffff;
+    border: 1px solid #dce5f0;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.panel-grafica h4 {
+    color: #17365d;
+    font-size: 21px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.panel-grafica p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* TABLAS DE FRECUENCIAS */
+
+.tabla-scroll {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.tabla-frecuencias {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.tabla-frecuencias th {
+    background-color: #17365d;
+    color: white;
+    padding: 12px;
+    border: 1px solid #dce5f0;
+}
+
+.tabla-frecuencias td {
+    padding: 12px;
+    border: 1px solid #dce5f0;
+    text-align: center;
+}
+
+.tabla-frecuencias tbody tr:nth-child(even) {
+    background-color: #edf3fa;
+}
+
+.tabla-frecuencias tfoot th {
+    background-color: #2864a0;
+}
+
+/* GRAFICAS */
+
+.panel-grafica canvas {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 25px auto;
+    background-color: white;
+    border: 1px solid #dce5f0;
+    border-radius: 10px;
+}
+
+/* ADAPTACION A CELULARES */
+
+@media (max-width: 768px) {
+
+    .panel-grafica {
+        padding: 12px;
+    }
+
+    .tabla-frecuencias th,
+    .tabla-frecuencias td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+}
+
+/* ===================================
+   MODULO 4: PROBABILIDAD
+=================================== */
+
+.panel-probabilidad {
+    background-color: white;
+    padding: 25px;
+    margin-top: 25px;
+    border: 1px solid #dce5f0;
+    border-radius: 15px;
+}
+
+.panel-probabilidad h4 {
+    color: #17365d;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.panel-probabilidad p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.panel-probabilidad label {
+    color: #17365d;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.panel-probabilidad input,
+.panel-probabilidad select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #d4dce5;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.panel-probabilidad input:focus,
+.panel-probabilidad select:focus {
+    outline: none;
+    border-color: #2864a0;
+}
+
+.panel-probabilidad .respuesta-final {
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+@media (max-width: 768px) {
+
+    .panel-probabilidad {
+        padding: 15px;
+    }
+
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ===================================
+   MODULO 6: PRACTICAS INTERACTIVAS
+=================================== */
+
+.panel-practica {
+    background-color: white;
+    padding: 25px;
+    border: 1px solid #dce5f0;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+.panel-practica h4 {
+    color: #17365d;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.panel-practica p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* LISTA DE EJERCICIOS */
+
+.lista-ejemplos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.boton-ejemplo {
+    background-color: #e8f0fa;
+    color: #17365d;
+    border: 1px solid #c5d6ea;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.boton-ejemplo:hover {
+    background-color: #2864a0;
+    color: white;
+}
+
+/* EJERCICIO ACTIVO */
+
+#ejercicioActivo {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f8fd;
+    border-radius: 12px;
+}
+
+#temaPractica {
+    margin-bottom: 20px;
+}
+
+#enunciadoPractica {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+#retroalimentacionPractica {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 10px;
+    white-space: pre-line;
+    text-align: left;
+    line-height: 1.8;
+}
+
+/* DISEÑO PARA CELULARES */
+
+@media (max-width: 768px) {
+
+    .lista-ejemplos {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-practica {
+        padding: 15px;
+    }
+
+}
+
+/* ===================================
+   INFORMACIÓN ACADÉMICA
+=================================== */
+
+.pie-proyecto {
+    background: linear-gradient(
+        135deg,
+        #17365d,
+        #2864a0
+    );
+
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 50px;
+}
+
+.pie-proyecto h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.pie-proyecto p {
+    font-size: 15px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.nombre-estudiante {
+    font-size: 20px !important;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 15px 0 !important;
+}
+
+@media (max-width: 768px) {
+
+    .nombre-estudiante {
+        font-size: 17px !important;
+    }
+
+    .pie-proyecto {
+        padding: 25px 15px;
+    }
+
+}
+
+/* ===================================
+   STADI - FORMULAS MATEMATICAS
+   FRACCIONES VERTICALES
+=================================== */
+
+.fraccion-estadi {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    margin: 5px 8px;
+    font-size: 19px;
+    color: #17365d;
+}
+
+/* NUMERADOR */
+
+.fraccion-numerador {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 5px 10px;
+    border-bottom: 2px solid #17365d;
+    white-space: nowrap;
+}
+
+/* DENOMINADOR */
+
+.fraccion-denominador {
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+/* CONTENEDORES DE FORMULAS */
+
+.formula {
+    overflow-x: auto;
+    text-align: center;
+    padding: 20px;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+/* ADAPTACION PARA CELULARES */
+
+@media (max-width: 768px) {
+
+    .fraccion-estadi {
+        font-size: 16px;
+    }
+
+    .formula {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+}
+
+/* ===================================
+   STADI - RAICES MATEMATICAS
+=================================== */
+
+.formula math {
+    font-size: 28ppx;
+    color: #17365d;
+    vertical-align: middle;
+}
