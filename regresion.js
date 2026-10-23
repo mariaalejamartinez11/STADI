@@ -248,7 +248,7 @@ function calcularRelacion() {
         const partes = [];
 
         partes.push(
-            "<h3>📉 RESULTADOS DE CORRELACIÓN Y REGRESIÓN</h3>"
+            "<h3> RESULTADOS DE CORRELACIÓN Y REGRESIÓN</h3>"
         );
 
         partes.push(
@@ -277,20 +277,34 @@ function calcularRelacion() {
         );
 
         partes.push(
-            '<div class="formula">' +
-            "Media X = " + formatoRelacion(sumaX) +
-            " / " + n +
-            " = " + formatoRelacion(mediaX) +
-            "</div>"
-        );
+    '<div class="formula">' +
+        'x̄ = ' +
+        '<span class="fraccion-estadi">' +
+            '<span class="fraccion-numerador">' +
+                formatoRelacion(sumaX) +
+            '</span>' +
+            '<span class="fraccion-denominador">' +
+                n +
+            '</span>' +
+        '</span>' +
+        ' = ' + formatoRelacion(mediaX) +
+    '</div>'
+);
 
-        partes.push(
-            '<div class="formula">' +
-            "Media Y = " + formatoRelacion(sumaY) +
-            " / " + n +
-            " = " + formatoRelacion(mediaY) +
-            "</div>"
-        );
+partes.push(
+    '<div class="formula">' +
+        'ȳ = ' +
+        '<span class="fraccion-estadi">' +
+            '<span class="fraccion-numerador">' +
+                formatoRelacion(sumaY) +
+            '</span>' +
+            '<span class="fraccion-denominador">' +
+                n +
+            '</span>' +
+        '</span>' +
+        ' = ' + formatoRelacion(mediaY) +
+    '</div>'
+);
 
         // SUMAS CENTRADAS
 

@@ -197,7 +197,7 @@ function generarHistograma() {
         "tablaFrecuencias"
     ).innerHTML = `
 
-        <h4>📊 Tabla de frecuencias</h4>
+        <h4> Tabla de frecuencias</h4>
 
         <p>
             <strong>Cantidad de datos:</strong> ${n}
@@ -247,7 +247,7 @@ function generarHistograma() {
 
         </div>
 
-        <h4>📈 Histograma</h4>
+        <h4> Histograma</h4>
 
         <p>
             La altura de cada barra representa
@@ -292,25 +292,34 @@ function generarHistograma() {
 
     // LINEAS HORIZONTALES
 
-    for (let i = 0; i <= 4; i++) {
+    // ESCALA VERTICAL CON FRECUENCIAS ENTERAS
 
-        const y = base - (i / 4) * altura;
+const numeroMarcas = Math.min(4, Math.max(1, maxFrecuencia));
 
-        ctx.beginPath();
+for (let i = 0; i <= numeroMarcas; i++) {
 
-        ctx.moveTo(izquierda, y);
+    const valorFrecuencia = Math.round(
+        (maxFrecuencia * i) / numeroMarcas
+    );
 
-        ctx.lineTo(ancho - 25, y);
+    const y = base -
+        (valorFrecuencia / Math.max(1, maxFrecuencia)) * altura;
 
-        ctx.stroke();
+    ctx.beginPath();
 
-        ctx.fillText(
-            numeroGrafica(maxFrecuencia * i / 4),
-            20,
-            y + 5
-        );
+    ctx.moveTo(izquierda, y);
 
-    }
+    ctx.lineTo(ancho - 25, y);
+
+    ctx.stroke();
+
+    ctx.fillText(
+        String(valorFrecuencia),
+        20,
+        y + 5
+    );
+
+}
 
     // BARRAS DEL HISTOGRAMA
 
@@ -353,11 +362,23 @@ function generarHistograma() {
 
         // NOMBRE DE LA CLASE
 
-        ctx.fillText(
-            "Clase " + (i + 1),
-            x + espacio / 2,
-            base + 22
-        );
+        const limiteInferior = minimo + i * amplitud;
+
+const limiteSuperior = i === clases - 1
+    ? maximo
+    : minimo + (i + 1) * amplitud;
+
+const etiquetaIntervalo =
+    "[" + Number(limiteInferior.toFixed(4)) +
+    ", " + Number(limiteSuperior.toFixed(4)) +
+    (i === clases - 1 ? "]" : ")");
+
+ctx.fillText(
+    etiquetaIntervalo,
+    x + espacio / 2,
+    base + 22,
+    Math.max(25, espacio - 8)
+);
 
     }
 
@@ -372,10 +393,10 @@ function generarHistograma() {
     ctx.textAlign = "center";
 
     ctx.fillText(
-        "Intervalos (ver tabla)",
-        ancho / 2,
-        405
-    );
+    "Intervalos",
+    ancho / 2,
+    405
+);
 
     ctx.textAlign = "left";
 
@@ -508,13 +529,13 @@ function generarDispersion() {
     // DIBUJAR CUADRICULA
     // ======================================
 
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 0; i <= 4; i++) {
 
         const xx =
-            izquierda + i * anchoUtil / 5;
+    izquierda + i * anchoUtil / 4;
 
-        const yy =
-            abajo - i * altoUtil / 5;
+const yy =
+    abajo - i * altoUtil / 4;
 
         ctx.beginPath();
 
@@ -533,24 +554,24 @@ function generarDispersion() {
         ctx.textAlign = "center";
 
         ctx.fillText(
-            numeroGrafica(
-                xMin + i * (xMax - xMin) / 5
-            ),
-            xx,
-            abajo + 24
-        );
+    numeroGrafica(
+        xMin + i * (xMax - xMin) / 4
+    ),
+    xx,
+    abajo + 24
+);
 
         // VALORES DEL EJE Y
 
         ctx.textAlign = "right";
 
         ctx.fillText(
-            numeroGrafica(
-                yMin + i * (yMax - yMin) / 5
-            ),
-            izquierda - 9,
-            yy + 5
-        );
+    numeroGrafica(
+        yMin + i * (yMax - yMin) / 4
+    ),
+    izquierda - 9,
+    yy + 5
+);
 
     }
 
@@ -627,7 +648,7 @@ function generarDispersion() {
         "informacionDispersion"
     ).innerHTML = `
 
-        <h4>📈 Diagrama de dispersión</h4>
+        <h4> Diagrama de dispersión</h4>
 
         <p>
             Se representaron

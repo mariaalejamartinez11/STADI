@@ -77,12 +77,46 @@ const generadoresPractica = [
                 "entre la cantidad de datos.",
 
             pasos:
-                "Fórmula: x̄ = Σx / n\n" +
-                "Σx = " + d.join(" + ") +
-                " = " + suma + "\n" +
-                "x̄ = " + suma + " / " +
-                d.length + " = " +
-                mostrarNumero(media)
+    "Fórmula: x̄ = Σx / n\n" +
+    "Σx = " + d.join(" + ") +
+    " = " + suma + "\n" +
+    "x̄ = " + suma + " / " +
+    d.length + " = " +
+    mostrarNumero(media),
+
+pasosHTML: `
+
+    <p><strong>1. Fórmula general:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        x̄ = ${fraccionEstadi("Σxᵢ", "n")}
+    </div>
+
+    <p><strong>2. Sustitución de valores:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        x̄ = ${fraccionEstadi(
+            d.join(" + "),
+            d.length
+        )}
+    </div>
+
+    <p><strong>3. Suma de los datos:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        x̄ = ${fraccionEstadi(
+            mostrarNumero(suma),
+            d.length
+        )}
+    </div>
+
+    <p><strong>4. Resultado final:</strong></p>
+
+    <div class="respuesta-final">
+        Media aritmética = ${mostrarNumero(media)}
+    </div>
+
+`
 
         };
 
@@ -129,10 +163,93 @@ const generadoresPractica = [
                 "Ordena los datos. Si son pares, " +
                 "promedia los dos valores centrales.",
 
-            pasos:
-                "Datos ordenados: " +
-                orden.join(", ") + "\n" +
-                procedimiento
+           pasos:
+    "Datos ordenados: " +
+    orden.join(", ") + "\n" +
+    procedimiento,
+
+pasosHTML: `
+
+    <p><strong>1. Datos ordenados:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        ${orden.join(", ")}
+    </div>
+
+    <p><strong>2. Cantidad de datos:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        n = ${n}
+    </div>
+
+    ${n % 2 === 0 ? `
+
+        <p><strong>3. Fórmula general:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Me = ${fraccionEstadi(
+                "x<sub>n/2</sub> + x<sub>n/2+1</sub>",
+                "2"
+            )}
+        </div>
+
+        <p><strong>4. Sustitución:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Me = ${fraccionEstadi(
+                mostrarNumero(orden[n / 2 - 1]) +
+                " + " +
+                mostrarNumero(orden[n / 2]),
+                "2"
+            )}
+        </div>
+
+        <p><strong>5. Suma de valores:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Me = ${fraccionEstadi(
+                mostrarNumero(
+                    orden[n / 2 - 1] + orden[n / 2]
+                ),
+                "2"
+            )}
+        </div>
+
+    ` : `
+
+        <p><strong>3. Fórmula general:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Me = x<sub>(n+1)/2</sub>
+        </div>
+
+        <p><strong>4. Posición central:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Posición = ${fraccionEstadi(
+                n + " + 1",
+                "2"
+            )}
+            = ${(n + 1) / 2}
+        </div>
+
+        <p><strong>5. Valor central:</strong></p>
+
+        <div class="formula formula-permutaciones">
+            Me = ${mostrarNumero(
+                orden[(n - 1) / 2]
+            )}
+        </div>
+
+    `}
+
+    <p><strong>6. Resultado final:</strong></p>
+
+    <div class="respuesta-final">
+        Mediana = ${mostrarNumero(respuesta)}
+    </div>
+
+`
 
         };
 
@@ -411,12 +528,56 @@ const generadoresPractica = [
                 "Utiliza C(n,r) = n! / [r!(n-r)!].",
 
             pasos:
-                "C(" + n + "," + r + ") = " +
-                n + "! / [" + r + "!(" +
-                n + "-" + r + ")!]\n" +
-                "Resultado = " + respuesta
+    "C(" + n + "," + r + ") = " +
+    n + "! / [" + r + "!(" +
+    n + "-" + r + ")!]\n" +
+    "Resultado = " + respuesta,
 
-        };
+pasosHTML: `
+
+    <p><strong>1. Fórmula general:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        C(n,r) = ${fraccionEstadi("n!", "r!(n-r)!")}
+    </div>
+
+    <p><strong>2. Sustitución:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        C(${n},${r}) =
+        ${fraccionEstadi(
+            n + "!",
+            r + "!(" + n + "-" + r + ")!"
+        )}
+    </div>
+
+    <p><strong>3. Desarrollo de factoriales:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        C(${n},${r}) =
+        ${fraccionEstadi(
+            factorialPractica(n),
+            factorialPractica(r) + " × " +
+            factorialPractica(n-r)
+        )}
+    </div>
+
+    <p><strong>4. Simplificación:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        C(${n},${r}) =
+        ${fraccionEstadi(
+            factorialPractica(n),
+            factorialPractica(r) * factorialPractica(n-r)
+        )}
+    </div>
+
+    <div class="respuesta-final">
+        Resultado = ${respuesta}
+    </div>
+
+`
+};
 
     },
 
@@ -447,17 +608,37 @@ const generadoresPractica = [
             pista:
                 "Utiliza P(n,r) = n! / (n-r)!.",
 
-            pasos:
-                "P(" + n + "," + r + ") = " +
-                n + "! / (" + n +
-                "-" + r + ")!\n" +
-                "Resultado = " + respuesta
+           pasos:
+    "P(" + n + "," + r + ") = " +
+    n + "! / (" + n +
+    "-" + r + ")!\n" +
+    "Resultado = " + respuesta,
 
-        };
+pasosHTML: `
+    <p><strong>Fórmula:</strong></p>
+
+    <div class="formula">
+        P(n,r) = ${fraccionEstadi("n!", "(n-r)!")}
+    </div>
+
+    <p><strong>Sustitución:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        P(${n},${r}) =
+        ${fraccionEstadi(n + "!", "(" + n + "-" + r + ")!")}
+    </div>
+
+    <div class="formula formula-permutaciones">
+        P(${n},${r}) =
+        ${fraccionEstadi(factorialPractica(n), factorialPractica(n-r))}
+    </div>
+
+    <p><strong>Resultado = ${respuesta}</strong></p>
+`
+
+};
 
     },
-
-
     // 11. PUNTUACION Z
 
     function(fijo) {
@@ -486,9 +667,42 @@ const generadoresPractica = [
                 "Utiliza z = (X - μ) / σ.",
 
             pasos:
-                "z = (" + x + " - " +
-                mu + ") / " + sigma +
-                "\nz = " + z
+    "Z = (" + x + " - " + mu + ") / " + sigma +
+    "\nZ = " + z,
+
+pasosHTML: `
+
+    <p><strong>1. Fórmula general:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        Z = ${fraccionEstadi("X − μ", "σ")}
+    </div>
+
+    <p><strong>2. Sustitución:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        Z = ${fraccionEstadi(
+            mostrarNumero(x) + " − " + mostrarNumero(mu),
+            mostrarNumero(sigma)
+        )}
+    </div>
+
+    <p><strong>3. Desarrollo de la operación:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        Z = ${fraccionEstadi(
+            mostrarNumero(x - mu),
+            mostrarNumero(sigma)
+        )}
+    </div>
+
+    <p><strong>4. Resultado final:</strong></p>
+
+    <div class="respuesta-final">
+        Z = ${mostrarNumero(z)}
+    </div>
+
+`
 
         };
 
@@ -528,12 +742,72 @@ const generadoresPractica = [
                 "utiliza la ecuación ŷ = a + bx.",
 
             pasos:
-                "b = (" + y2 + " - " + y1 +
-                ") / (2 - 1) = " + b +
-                "\na = " + y1 + " - " + b +
-                " × 1 = " + a +
-                "\nŷ = " + a + " + " + b +
-                " × " + x + " = " + prediccion
+    "b = (" + y2 + " - " + y1 + ") / (2 - 1) = " + b +
+    "\na = " + y1 + " - " + b + " × 1 = " + a +
+    "\nŷ = " + a + " + " + b + " × " + x +
+    " = " + prediccion,
+
+pasosHTML: `
+
+    <p><strong>1. Fórmula de la pendiente:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        b = ${fraccionEstadi("y₂ − y₁", "x₂ − x₁")}
+    </div>
+
+    <p><strong>2. Sustitución de la pendiente:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        b = ${fraccionEstadi(
+            mostrarNumero(y2) + " − " + mostrarNumero(y1),
+            "2 − 1"
+        )}
+    </div>
+
+    <p><strong>3. Cálculo de la pendiente:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        b = ${fraccionEstadi(
+            mostrarNumero(y2 - y1),
+            "1"
+        )}
+        = ${mostrarNumero(b)}
+    </div>
+
+    <p><strong>4. Fórmula del intercepto:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        a = y₁ − b × x₁
+    </div>
+
+    <p><strong>5. Sustitución del intercepto:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        a = ${mostrarNumero(y1)} −
+        (${mostrarNumero(b)} × 1)
+        = ${mostrarNumero(a)}
+    </div>
+
+    <p><strong>6. Ecuación de regresión:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        ŷ = a + bx
+    </div>
+
+    <p><strong>7. Sustitución de valores:</strong></p>
+
+    <div class="formula formula-permutaciones">
+        ŷ = ${mostrarNumero(a)} +
+        (${mostrarNumero(b)} × ${mostrarNumero(x)})
+    </div>
+
+    <p><strong>8. Resultado final:</strong></p>
+
+    <div class="respuesta-final">
+        ŷ = ${mostrarNumero(prediccion)}
+    </div>
+
+`
 
         };
 
@@ -691,6 +965,20 @@ function mostrarSolucionPractica() {
 
     retro.className = "respuesta-final";
 
+    if (ejercicioActual.pasosHTML) {
+
+    retro.innerHTML = `
+        <p><strong>Respuesta:
+            ${mostrarNumero(ejercicioActual.respuesta)}
+        </strong></p>
+
+        <p><strong>Procedimiento:</strong></p>
+
+        ${ejercicioActual.pasosHTML}
+    `;
+
+} else {
+
     retro.textContent =
         "Respuesta: " +
         mostrarNumero(ejercicioActual.respuesta) +
@@ -699,6 +987,7 @@ function mostrarSolucionPractica() {
 
 }
 
+}
 
 // ==========================================
 // INICIALIZAR BANCO DE EJERCICIOS

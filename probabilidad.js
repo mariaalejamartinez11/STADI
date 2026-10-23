@@ -1,8 +1,5 @@
-// ==========================================
 // STADI - MODULO 4
 // PROBABILIDAD
-// ==========================================
-
 
 // LEER Y VALIDAR NUMEROS
 
@@ -230,14 +227,32 @@ function mostrarProbNormal() {
             </p>
 
             <div class="formula">
-                z = (x − μ) / σ
-            </div>
+    z = ${fraccionEstadi("X - μ", "σ")}
+        </div>
 
-            <div class="formula">
-                z = (${numeroProb(x)} − ${numeroProb(mu)})
-                / ${numeroProb(sigma)}
-                = ${numeroProb(z)}
-            </div>
+        <p><strong>1. Sustitución de valores:</strong></p>
+
+<div class="formula">
+    z = ${fraccionEstadi(
+        numeroProb(x) + " - " + numeroProb(mu),
+        numeroProb(sigma)
+        )}
+        </div>
+
+<p><strong>2. Desarrollo de la operación:</strong></p>
+
+<div class="formula">
+    z = ${fraccionEstadi(
+        numeroProb(x - mu),
+        numeroProb(sigma)
+    )}
+</div>
+
+<p><strong>3. Resultado de estandarización:</strong></p>
+
+<div class="formula">
+    z = ${numeroProb(z)}
+</div>
 
         `;
 
@@ -253,16 +268,18 @@ function mostrarProbNormal() {
             evento = "P(X ≤ " + numeroProb(x) + ")";
 
             desarrollo += `
+    <p><strong>4. Fórmula de probabilidad:</strong></p>
 
-                <p>
-                    P(X ≤ x) = Φ(z)
-                </p>
+    <div class="formula">
+        P(X ≤ x) = Φ(z)
+    </div>
 
-                <div class="formula">
-                    P = Φ(${numeroProb(z)})
-                </div>
+    <p><strong>5. Sustitución de valores:</strong></p>
 
-            `;
+    <div class="formula">
+        P(X ≤ ${numeroProb(x)}) = Φ(${numeroProb(z)})
+    </div>
+`;
 
         }
 
@@ -275,16 +292,25 @@ function mostrarProbNormal() {
             evento = "P(X ≥ " + numeroProb(x) + ")";
 
             desarrollo += `
+    <p><strong>4. Fórmula de probabilidad mayor:</strong></p>
 
-                <p>
-                    P(X ≥ x) = 1 − Φ(z)
-                </p>
+    <div class="formula">
+        P(X ≥ x) = 1 − Φ(z)
+    </div>
 
-                <div class="formula">
-                    P = 1 − Φ(${numeroProb(z)})
-                </div>
+    <p><strong>5. Sustitución de valores:</strong></p>
 
-            `;
+    <div class="formula">
+        P(X ≥ ${numeroProb(x)}) = 1 − Φ(${numeroProb(z)})
+    </div>
+
+    <p><strong>6. Desarrollo de la operación:</strong></p>
+
+    <div class="formula">
+        P(X ≥ ${numeroProb(x)}) =
+        1 − ${acumuladaNormal(z).toFixed(6)}
+    </div>
+`;
 
         }
 
@@ -317,27 +343,56 @@ function mostrarProbNormal() {
             evento = "P(" + numeroProb(x) +
          " ≤ X ≤ " + numeroProb(y) + ")";
             desarrollo += `
+    <p><strong>4. Estandarización del límite superior:</strong></p>
 
-                <p>
-                    <strong>Segundo límite:</strong>
-                </p>
+    <div class="formula">
+        z₂ =
+        <span style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle;">
+            <span style="border-bottom:2px solid currentColor; padding:0 8px;">
+                ${numeroProb(y)} − ${numeroProb(mu)}
+            </span>
+            <span style="padding-top:3px;">
+                ${numeroProb(sigma)}
+            </span>
+        </span>
+        = ${numeroProb(zy)}
+    </div>
 
-                <div class="formula">
-                    z₂ = (${numeroProb(y)} − ${numeroProb(mu)})
-                    / ${numeroProb(sigma)}
-                    = ${numeroProb(zy)}
-                </div>
+    <p><strong>5. Fórmula de probabilidad entre dos valores:</strong></p>
 
-                <p>
-                    P(a ≤ X ≤ b) = Φ(z₂) − Φ(z₁)
-                </p>
+    <div class="formula">
+        P(a ≤ X ≤ b) = Φ(z₂) − Φ(z₁)
+    </div>
 
-                <div class="formula">
-                    P = Φ(${numeroProb(zy)})
-                    − Φ(${numeroProb(z)})
-                </div>
+    <p><strong>6. Sustitución de valores:</strong></p>
 
-            `;
+    <div class="formula">
+        P(${numeroProb(x)} ≤ X ≤ ${numeroProb(y)})
+        = Φ(${numeroProb(zy)}) − Φ(${numeroProb(z)})
+    </div>
+
+    <p><strong>7. Valores de probabilidad acumulada:</strong></p>
+
+    <div class="formula">
+        Φ(${numeroProb(zy)}) =
+        ${acumuladaNormal(zy).toFixed(6)}
+
+        <br><br>
+
+        Φ(${numeroProb(z)}) =
+        ${acumuladaNormal(z).toFixed(6)}
+    </div>
+
+    <p><strong>8. Desarrollo de la operación:</strong></p>
+
+    <div class="formula">
+        P(${numeroProb(x)} ≤ X ≤ ${numeroProb(y)})
+        =
+        ${acumuladaNormal(zy).toFixed(6)}
+        −
+        ${acumuladaNormal(z).toFixed(6)}
+    </div>
+`;
 
         }
 
@@ -355,7 +410,7 @@ function mostrarProbNormal() {
 
         salida.innerHTML = `
 
-            <h4>📈 Distribución normal</h4>
+            <h4> Distribución normal</h4>
 
             <p>
                 <strong>Media:</strong>
@@ -475,22 +530,73 @@ function mostrarProbConteo() {
         const combinacion =
             tipo === "combinacion";
 
-        const formula = combinacion
-            ? "C(n,r) = n! / [r! (n−r)!]"
-            : "P(n,r) = n! / (n−r)!";
+       const formula = combinacion
+    ? "C(n,r) = " +
+      fraccionEstadi(
+          "n!",
+          "r!(n-r)!"
+      )
+    : "P(n,r) = " +
+      fraccionEstadi(
+          "n!",
+          "(n-r)!"
+      );
 
-        const sustitucion = combinacion
-    ? "C(" + n + "," + r + ") = " + n +
-      "! / [" + r + "! (" + n + "−" + r + ")!]"
-    : "P(" + n + "," + r + ") = " + n +
-      "! / (" + n + "−" + r + ")!";
+const sustitucion = combinacion
+    ? "C(" + n + "," + r + ") = " +
+      fraccionEstadi(
+          n + "!",
+          r + "!(" + n + "-" + r + ")!"
+      )
+    : "P(" + n + "," + r + ") = " +
+      fraccionEstadi(
+          n + "!",
+          "(" + n + "-" + r + ")!"
+      );
+
+      const factorialDetalle = (numero) => {
+    let total = 1n;
+
+    for (let i = 2; i <= numero; i++) {
+        total *= BigInt(i);
+    }
+
+    return total;
+};
+
+const factorialN = factorialDetalle(n);
+const factorialR = factorialDetalle(r);
+const factorialRestante = factorialDetalle(n - r);
+
+const denominador = combinacion
+    ? factorialR * factorialRestante
+    : factorialRestante;
+
+const nombreOperacion = combinacion
+    ? "C(" + n + "," + r + ") = "
+    : "P(" + n + "," + r + ") = ";
+
+const desarrollo = nombreOperacion +
+    fraccionEstadi(
+        factorialN.toString(),
+        combinacion
+            ? factorialR.toString() + " × " +
+              factorialRestante.toString()
+            : factorialRestante.toString()
+    );
+
+const simplificacion = nombreOperacion +
+    fraccionEstadi(
+        factorialN.toString(),
+        denominador.toString()
+    );
 
         salida.hidden = false;
 
         salida.innerHTML = `
 
             <h4>
-                🧮 ${combinacion
+                 ${combinacion
                     ? "Combinaciones"
                     : "Permutaciones"}
             </h4>
@@ -510,6 +616,18 @@ function mostrarProbConteo() {
 
             <div class="formula">
                 ${sustitucion}
+            </div>
+
+            <p><strong>Desarrollo de factoriales:</strong></p>
+
+            <div class="formula">
+                ${desarrollo}
+            </div>
+
+            <p><strong>Simplificación:</strong></p>
+
+            <div class="formula">
+                ${simplificacion}
             </div>
 
             <div class="respuesta-final">

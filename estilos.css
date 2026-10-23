@@ -799,3 +799,103 @@ footer p {
     color: #17365d;
     vertical-align: middle;
 }
+
+/* ===================================
+   STADI - FORMULAS RESPONSIVAS
+   ADAPTACION PARA CELULARES
+=================================== */
+
+@media (max-width: 768px) {
+
+    .formula .fraccion-estadi {
+        max-width: 100%;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .formula .fraccion-numerador {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+    }
+
+}
+/* ==========================================
+   STADI - AJUSTE FINAL DE FRACCIONES
+   EN DISPOSITIVOS MOVILES
+========================================== */
+
+@media (max-width: 768px) {
+
+    .formula:has(> .fraccion-estadi) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .formula:has(> .fraccion-estadi) .fraccion-estadi {
+        flex: 0 1 auto;
+        min-width: 0;
+        max-width: calc(100% - 50px);
+        margin: 0;
+    }
+
+    .formula:has(> .fraccion-estadi) .fraccion-numerador {
+        white-space: normal;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+    }
+
+}
+
+/* =====================================
+   STADI - ALINEACIÓN DE PERMUTACIONES
+===================================== */
+
+.formula-permutaciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.formula-permutaciones .fraccion-estadi {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* =====================================
+   STADI - PROCEDIMIENTOS COMPACTOS
+   PRÁCTICAS INTERACTIVAS
+===================================== */
+
+/* Eliminar espacios vacíos innecesarios */
+#retroalimentacionPractica {
+    white-space: normal !important;
+    line-height: 1.5;
+}
+
+/* Reducir separación entre títulos */
+#retroalimentacionPractica p {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+/* Reducir espacios entre fórmulas */
+#retroalimentacionPractica .formula {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 12px;
+}
+
+/* Ajustar espacio de los resultados */
+#retroalimentacionPractica .respuesta-final {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    padding: 12px;
+}
